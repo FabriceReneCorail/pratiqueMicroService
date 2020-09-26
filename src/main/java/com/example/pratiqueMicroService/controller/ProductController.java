@@ -2,11 +2,12 @@ package com.example.pratiqueMicroService.controller;
 
 import com.example.pratiqueMicroService.Model.Product;
 import com.example.pratiqueMicroService.dao.ProductDao;
+import com.example.pratiqueMicroService.exceptions.ProduitIntrouvableException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -24,8 +25,13 @@ public class ProductController {
 
     //Produits/{id}
     @GetMapping(value = "Produits/{id}")
-    public Product afficherUnProduit(@PathVariable int id){
-        return productDao.findById(id);
+    public Product afficherUnProduit(@PathVariable int id) throws ProduitIntrouvableException {
+
+        Product product = productDao.findById(id);
+
+        if(product == null) throw new ProduitIntrouvableException("le produit n'existe pas");
+
+        return product;
     }
 
     @PostMapping (value = "ajouterProduit")
