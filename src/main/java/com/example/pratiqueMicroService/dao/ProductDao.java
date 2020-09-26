@@ -9,4 +9,6 @@ public interface ProductDao extends JpaRepository<Product ,Integer> {
     Product findById(int id);
 
     List <Product> findByPrixGreaterThan(int prixLimit);
+
+    List<Product> findByPrixLessThan(int prixFiltre);
 }

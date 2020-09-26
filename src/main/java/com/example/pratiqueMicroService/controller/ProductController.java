@@ -46,4 +46,9 @@ public class ProductController {
     List <Product> afficherSelection(@PathVariable int prixLimit){
         return productDao.findByPrixGreaterThan(prixLimit);
     }
+
+    @GetMapping(value = "Tri/Produits/{prixFiltre}")
+    List<Product> afficherSelectionMinus(@PathVariable int prixFiltre){
+        return productDao.findByPrixLessThan(prixFiltre);
+    }
 }
