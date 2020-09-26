@@ -2,12 +2,19 @@ package com.example.pratiqueMicroService.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 
-
+    @Id
+    @GeneratedValue
     private int id;
     private String nom;
     private int prix;
+
     @JsonIgnore
     private int prixAchat;
 
