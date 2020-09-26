@@ -41,4 +41,9 @@ public class ProductController {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
+
+    @GetMapping(value ="Test/Produits/{prixLimit}")
+    List <Product> afficherSelection(@PathVariable int prixLimit){
+        return productDao.findByPrixGreaterThan(prixLimit);
+    }
 }
